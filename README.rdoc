@@ -1,12 +1,61 @@
 = configloader
 
-Description goes here.
+If you need to create a custom config file for you Rails project, ConfigLoader will help you to load the contents of this file.
+
+== How to install the gem
+
+  gem install configloader
+
+== Usage
+
+  ConfigLoader.load(file_name, running_env, project_root)
+  
+  Let's assume that you have the special file config/database.yml in your Rails project.
+  In this example, you are using CouchDB as your database. This file has the content below:
+  
+      development:
+        server: localhost
+        port: 5984
+        database_name: addressbook_development
+  
+      test:
+        server: localhost
+        port: 5984
+        database_name: addressbook_development
+  
+      production:
+        server: production.server.com
+        port: 5984
+        database_name: addressbook_development
+  
+  In order to access the database configuration for your current environment, you'd write, for instance:
+  
+      db_config = ConfigLoader.load('database')
+      db_config['server'] # localhost
+      db_config[:server]  # localhost
+      db_config.server    # localhost
+  
+  We're assuming that your current environment is development.
+  
+  You can get the configuration of a specific running environment writing this:
+  
+      db_config = ConfigLoader.load('database', 'production')
+      db_config['server'] # production.server.com
+      db_config[:server]  # production.server.com
+      db_config.server    # production.server.com
+  
+  Finally, you can specify the project root too. If you don't, it will assume the project root is RAILS_ROOT.
+  To change it, write:
+  
+  
+      db_config = ConfigLoader.load('database', 'production')
+      db_config = ConfigLoader.load('database', 'test', '/home/user/my_special_project_root')
 
 == Note on Patches/Pull Requests
  
 * Fork the project.
 * Make your feature addition or bug fix.
-* Add tests for it. This is important so I don't break it in a
+* Add specs for it. This is important so I don't break it in a
   future version unintentionally.
 * Commit, do not mess with rakefile, version, or history.
   (if you want to have your own version, that is fine but bump version in a commit by itself I can ignore when I pull)

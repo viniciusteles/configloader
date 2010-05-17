@@ -5,13 +5,12 @@ begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
     gem.name = "configloader"
-    gem.summary = %Q{TODO: one-line summary of your gem}
-    gem.description = %Q{TODO: longer description of your gem}
+    gem.summary = %Q{ConfigLoader make it easy to load the values of a custom configuration file in a Rails project.}
+    gem.description = %Q{If you need to create a custom config file for you project, ConfigLoader will help you to load the contents of this file.}
     gem.email = "vinicius@improveit.com.br"
     gem.homepage = "http://github.com/viniciusteles/configloader"
     gem.authors = ["Vinicius Teles"]
     gem.add_development_dependency "rspec", ">= 1.2.9"
-    # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
   end
   Jeweler::GemcutterTasks.new
 rescue LoadError
