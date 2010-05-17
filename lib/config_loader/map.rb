@@ -1,6 +1,6 @@
 module ConfigLoader
   
-  class Map < Hash
+  class Map
     
     attr_reader :file_name, :running_env, :project_root
 
@@ -20,11 +20,8 @@ module ConfigLoader
       "#{project_root}/config/#{file_name}"
     end
     
-    def populate
-      file_content[@running_env].each do |key, value|
-        self[key] = value
-        self[key.to_sym] = value
-      end
+    def load
+      file_content[@running_env]
     end
     
     def method_missing(method_name)

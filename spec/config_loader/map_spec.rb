@@ -57,24 +57,15 @@ module ConfigLoader
 
     end
     
-    describe ".populate" do
+    describe ".load" do
 
       it "should load config for a specific running environment" do
-        file_content = { 'development' => 
-                            { 'server'        => 'localhost',
-                              'port'          => 5984,
-                              'name'          => 'customers' } }
+        development_config = {  'server'        => 'localhost',
+                                'port'          => 5984,
+                                'name'          => 'customers' }
+        file_content = { 'development' => development_config }
         @config_loader.should_receive(:file_content).and_return(file_content)
-        @config_loader.populate
-        @config_loader['server'].should == 'localhost'
-        @config_loader[:server].should  == 'localhost'
-        @config_loader.server.should    == 'localhost'
-        @config_loader['port'].should   == 5984
-        @config_loader[:port].should    == 5984
-        @config_loader.port.should      == 5984
-        @config_loader['name'].should   == 'customers'
-        @config_loader[:name].should    == 'customers'
-        @config_loader.name.should      == 'customers'
+        @config_loader.load.should == development_config
       end
 
     end

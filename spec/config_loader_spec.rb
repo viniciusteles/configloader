@@ -7,7 +7,7 @@ describe "ConfigLoader" do
     def prepare_mocks(running_env, project_root)
       Rails.stub!(:env).and_return(running_env)
       ConfigLoader::Map.should_receive(:new).with('database', running_env, project_root).and_return(@map_mock)
-      @map_mock.should_receive(:populate)
+      @map_mock.should_receive(:load).and_return('config')
     end
     
     before(:each) do
@@ -16,17 +16,17 @@ describe "ConfigLoader" do
     
     it "should delegate to ConfigLoader::Map.populate" do
       prepare_mocks('development', '/home/user/project')      
-      ConfigLoader.load('database').should == @map_mock
+      ConfigLoader.load('database').should == 'config'
     end
     
     it "should delegate to ConfigLoader::Map.populate with the given running_env" do
       prepare_mocks('production', '/home/user/project')      
-      ConfigLoader.load('database', 'production').should == @map_mock
+      ConfigLoader.load('database', 'production').should == 'config'
     end
 
     it "should delegate to ConfigLoader::Map.populate with the given project_root" do
       prepare_mocks('development', '/home/user/another_project')      
-      ConfigLoader.load('database', 'development', '/home/user/another_project').should == @map_mock
+      ConfigLoader.load('database', 'development', '/home/user/another_project').should == 'config'
     end
 
   end

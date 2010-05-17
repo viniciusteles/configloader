@@ -13,28 +13,28 @@ module ConfigLoader
   #     test:
   #       server: localhost
   #       port: 5984
-  #       database_name: addressbook_development
+  #       database_name: addressbook_test
   # 
   #     production:
   #       server: production.server.com
   #       port: 5984
-  #       database_name: addressbook_development
+  #       database_name: addressbook_production
   # 
   # In order to access the database configuration for your current environment, you'd write, for instance:
   # 
   #     db_config = ConfigLoader.load('database')
-  #     db_config['server'] # localhost
-  #     db_config[:server]  # localhost
-  #     db_config.server    # localhost
+  #     db_config['server']                     # localhost
+  #     db_config['port']                       # 5984
+  #     db_config['database_name']              # addressbook_development
   # 
   # We're assuming that your current environment is development.
   # 
   # You can get the configuration of a specific running environment writing this:
   # 
   #     db_config = ConfigLoader.load('database', 'production')
-  #     db_config['server'] # production.server.com
-  #     db_config[:server]  # production.server.com
-  #     db_config.server    # production.server.com
+  #     db_config['server']                     # production.server.com
+  #     db_config['port']                       # 5984
+  #     db_config['database_name']              # addressbook_production
   # 
   # Finally, you can specify the project root too. If you don't, it will assume the project root is RAILS_ROOT. To change it, write:
   # 
@@ -42,9 +42,7 @@ module ConfigLoader
   #     db_config = ConfigLoader.load('database', 'production')
   #     db_config = ConfigLoader.load('database', 'test', '/home/user/my_special_project_root')  
   def self.load(file_name, running_env = Rails.env, project_root = RAILS_ROOT)
-    map = ConfigLoader::Map.new(file_name, running_env, project_root)
-    map.populate
-    map
+    ConfigLoader::Map.new(file_name, running_env, project_root).load
   end
   
 end
