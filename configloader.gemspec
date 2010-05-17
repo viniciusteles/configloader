@@ -23,6 +23,7 @@ Gem::Specification.new do |s|
      "README.rdoc",
      "Rakefile",
      "VERSION",
+     "configloader.gemspec",
      "lib/config_loader.rb",
      "lib/config_loader/map.rb",
      "lib/config_loader/missing_config_file_error.rb",
@@ -37,7 +38,7 @@ Gem::Specification.new do |s|
   s.rdoc_options = ["--charset=UTF-8"]
   s.require_paths = ["lib"]
   s.rubygems_version = %q{1.3.6}
-  s.summary = %q{ConfigLoader make it easy to load the values of a custom configuration file in a Rails project.}
+  s.summary = %q{ConfigLoader makes it easy to load the values of a custom configuration file in a Rails project.}
   s.test_files = [
     "spec/config_loader/map_spec.rb",
      "spec/config_loader_spec.rb",

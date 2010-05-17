@@ -42,7 +42,9 @@ module ConfigLoader
   #     db_config = ConfigLoader.load('database', 'production')
   #     db_config = ConfigLoader.load('database', 'test', '/home/user/my_special_project_root')  
   def self.load(file_name, running_env = Rails.env, project_root = RAILS_ROOT)
-    ConfigLoader::Map.new(file_name, running_env, project_root).populate
+    map = ConfigLoader::Map.new(file_name, running_env, project_root)
+    map.populate
+    map
   end
   
 end
