@@ -1,0 +1,16 @@
+PATH
+  remote: .
+  specs:
+    configloader (0.2.1)
+
+GEM
+  remote: http://rubygems.org/
+  specs:
+    rspec (1.3.0)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  configloader!
+  rspec (>= 1.2.9)
