@@ -6,6 +6,7 @@ describe "ConfigLoader" do
     
     def prepare_mocks(running_env, project_root)
       Rails.stub!(:env).and_return(running_env)
+      Rails.stub!(:root).and_return('/home/user/project')
       ConfigLoader::Map.should_receive(:new).with('database', running_env, project_root).and_return(@map_mock)
       @map_mock.should_receive(:load).and_return('config')
     end

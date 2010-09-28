@@ -44,7 +44,7 @@ If you need to create a custom config file for you Rails project, ConfigLoader w
       db_config['port']                       # 5984
       db_config['database_name']              # addressbook_production
   
-  Finally, you can specify the project root too. If you don't, it will assume the project root is RAILS_ROOT.
+  Finally, you can specify the project root too. If you don't, it will assume the project root is Rails.root.
   To change it, write:
   
   

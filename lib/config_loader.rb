@@ -36,12 +36,12 @@ module ConfigLoader
   #     db_config['port']                       # 5984
   #     db_config['database_name']              # addressbook_production
   # 
-  # Finally, you can specify the project root too. If you don't, it will assume the project root is RAILS_ROOT. To change it, write:
+  # Finally, you can specify the project root too. If you don't, it will assume the project root is Rails.root. To change it, write:
   # 
   # 
   #     db_config = ConfigLoader.load('database', 'production')
   #     db_config = ConfigLoader.load('database', 'test', '/home/user/my_special_project_root')  
-  def self.load(file_name, running_env = Rails.env, project_root = RAILS_ROOT)
+  def self.load(file_name, running_env = Rails.env, project_root = Rails.root.to_s)
     ConfigLoader::Map.new(file_name, running_env, project_root).load
   end
   
