@@ -42,7 +42,7 @@ Gem::Specification.new do |s|
   s.rdoc_options = ["--charset=UTF-8"]
   s.require_paths = ["lib"]
   s.rubygems_version = %q{1.3.7}
-  s.summary = %q{ConfigLoader makes it easy to load the values of a custom configuration file in a Rails project.}
+  s.summary = %q{ConfigLoader makes it easy to load the values of a custom configuration file in a Rails project or in a regular Ruby project.}
   s.test_files = [
     "spec/config_loader_spec.rb",
      "spec/spec_helper.rb"
