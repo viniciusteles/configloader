@@ -6,6 +6,3 @@ require 'spec/autorun'
 
 class Rails
 end
-
-Spec::Runner.configure do |config|
-end

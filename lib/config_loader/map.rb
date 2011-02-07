@@ -13,7 +13,7 @@ module ConfigLoader
     end
     
     def file_content
-      raise MissingConfigFileError unless File.exists?(full_file_name)
+      raise MissingConfigFileError.new(full_file_name) unless File.exists?(full_file_name)
       YAML.load(ERB.new(File.read(full_file_name)).result)
     end
     

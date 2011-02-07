@@ -1,0 +1,9 @@
+development: 
+  server: localhost
+  port: 5984
+  name: alternative_customers_development
+
+test:
+  server: localhost
+  post: 5985
+  name: alternative_customers_test

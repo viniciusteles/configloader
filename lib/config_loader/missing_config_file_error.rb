@@ -1,7 +1,7 @@
 module ConfigLoader
   class MissingConfigFileError < RuntimeError
-    def initialize
-      super("The config file couldn't be found.")
+    def initialize(filename)
+      super("The config file couldn't be found: #{filename}")
     end
   end
 end
