@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{configloader}
-  s.version = "0.2.2"
+  s.version = "0.3.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Vinicius Teles"]
-  s.date = %q{2010-09-28}
+  s.date = %q{2011-02-07}
   s.description = %q{If you need to create a custom config file for you project, ConfigLoader will help you to load the contents of this file.}
   s.email = %q{vinicius@improveit.com.br}
   s.extra_rdoc_files = [
@@ -32,8 +32,9 @@ Gem::Specification.new do |s|
      "lib/config_loader/missing_config_file_error.rb",
      "lib/config_loader/missing_config_file_name_error.rb",
      "lib/configloader.rb",
-     "spec/config_loader/map_spec.rb",
+     "spec/alternative_root_dir/config/database.yml",
      "spec/config_loader_spec.rb",
+     "spec/root_dir/config/database.yml",
      "spec/spec.opts",
      "spec/spec_helper.rb"
   ]
@@ -43,8 +44,7 @@ Gem::Specification.new do |s|
   s.rubygems_version = %q{1.3.7}
   s.summary = %q{ConfigLoader makes it easy to load the values of a custom configuration file in a Rails project.}
   s.test_files = [
-    "spec/config_loader/map_spec.rb",
-     "spec/config_loader_spec.rb",
+    "spec/config_loader_spec.rb",
      "spec/spec_helper.rb"
   ]
 
