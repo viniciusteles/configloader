@@ -2,16 +2,14 @@ require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 require 'yaml'
 
 module ConfigLoader
-  
   describe "Map" do
-  
     before(:each) do
       Rails.stub!(:env).and_return('development')
-      @config_loader = Map.new("database", 'development', '/home/user/project')
+      @root_dir = File.expand_path(File.join(File.dirname(__FILE__), ".."))
+      @config_loader = Map.new("database", 'development', @root_dir)
     end
   
     describe "initialize" do
-      
       it "should raise appropriate exception when no config file name is given" do
         lambda { Map.new(nil, nil, nil) }.should raise_error(MissingConfigFileNameError)
       end
@@ -29,47 +27,27 @@ module ConfigLoader
         config_loader = Map.new("database", "development", "/home/user/another_project")
         config_loader.project_root.should == "/home/user/another_project"
       end
-      
     end
     
     describe ".full_file_name" do
-
       it "should return the full path of the configuration file name" do
-        @config_loader.full_file_name.should == '/home/user/project/config/database.yml'
+        @config_loader.full_file_name.should == "#{@root_dir}/config/database.yml"
       end
-
     end
     
     describe ".file_content" do
-
       it "should load the contents of the YAML file" do
-        file_mock = mock('File')
-        File.should_receive(:exists?).with('/home/user/project/config/database.yml').and_return(true)
-        File.should_receive(:open).with('/home/user/project/config/database.yml').and_yield(file_mock)
-        YAML.should_receive(:load).with(file_mock).and_return({ 'development' => 'content'})
-        @config_loader.file_content.should == { 'development' => 'content'}
+        @config_loader.file_content.should == { "development" => { "name" => "customers", 
+                                                                   "port" => 5984, 
+                                                                   "server" => "localhost" }, 
+                                                "test" => { "name" => "customers", 
+                                                            "post" => 5985, 
+                                                            "server" => "localhost" }}
       end
       
       it "should raise appropriate exception when the config file is not found" do
-        File.should_receive(:exists?).with('/home/user/project/config/database.yml').and_return(false)
-        lambda { @config_loader.file_content }.should raise_error(MissingConfigFileError)
+        lambda { Map.new("inexistent", 'development', @root_dir).file_content }.should raise_error(MissingConfigFileError)
       end
-
     end
-    
-    describe ".load" do
-
-      it "should load config for a specific running environment" do
-        development_config = {  'server'        => 'localhost',
-                                'port'          => 5984,
-                                'name'          => 'customers' }
-        file_content = { 'development' => development_config }
-        @config_loader.should_receive(:file_content).and_return(file_content)
-        @config_loader.load.should == development_config
-      end
-
-    end
-
   end
-
 end

@@ -1,9 +1,8 @@
+require 'erb'
 require 'yaml'
 
 module ConfigLoader
-  
   class Map
-    
     attr_reader :file_name, :running_env, :project_root
 
     def initialize(file_name, running_env, project_root)
@@ -15,7 +14,7 @@ module ConfigLoader
     
     def file_content
       raise MissingConfigFileError unless File.exists?(full_file_name)
-      File.open(full_file_name) { |file| YAML::load(file) }
+      YAML.load(ERB.new(File.read(full_file_name)).result)
     end
     
     def full_file_name
@@ -29,7 +28,5 @@ module ConfigLoader
     def method_missing(method_name)
       self[method_name]
     end
-
   end
-  
 end

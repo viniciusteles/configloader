@@ -1,0 +1,9 @@
+development: 
+  server: localhost
+  port: 5984
+  name: customers
+
+test:
+  server: localhost
+  post: 5985
+  name: <%= "CUSTOMERS".downcase %>

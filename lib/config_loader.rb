@@ -2,7 +2,6 @@ dependencies = %w(missing_config_file_name_error missing_config_file_error map)
 dependencies.each { |dependency| require "config_loader/#{dependency}" }
 
 module ConfigLoader
-  
   # Let's assume that you have the special file config/database.yml in your Rails project. In this example, you are using CouchDB as your database. This file has the content below:
   # 
   #     development:
@@ -44,5 +43,4 @@ module ConfigLoader
   def self.load(file_name, running_env = Rails.env, project_root = Rails.root.to_s)
     ConfigLoader::Map.new(file_name, running_env, project_root).load
   end
-  
 end

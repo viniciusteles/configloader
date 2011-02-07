@@ -1,9 +1,7 @@
 require File.expand_path(File.dirname(__FILE__) + '/spec_helper')
 
 describe "ConfigLoader" do
-  
   describe ".load" do
-    
     def prepare_mocks(running_env, project_root)
       Rails.stub!(:env).and_return(running_env)
       Rails.stub!(:root).and_return('/home/user/project')
@@ -29,7 +27,12 @@ describe "ConfigLoader" do
       prepare_mocks('development', '/home/user/another_project')      
       ConfigLoader.load('database', 'development', '/home/user/another_project').should == 'config'
     end
-
   end
-
+  
+  describe ".load (dynamically)" do
+    it "should use ERB" do
+      config = ConfigLoader.load('database', 'test', File.dirname(__FILE__))
+      config['name'].should == 'customers'
+    end
+  end
 end
