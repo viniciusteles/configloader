@@ -5,7 +5,7 @@ begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
     gem.name = "configloader"
-    gem.summary = %Q{ConfigLoader makes it easy to load the values of a custom configuration file in a Rails project.}
+    gem.summary = %Q{ConfigLoader makes it easy to load the values of a custom configuration file in a Rails project or in a regular Ruby project.}
     gem.description = %Q{If you need to create a custom config file for you project, ConfigLoader will help you to load the contents of this file.}
     gem.email = "vinicius@improveit.com.br"
     gem.homepage = "http://github.com/viniciusteles/configloader"
