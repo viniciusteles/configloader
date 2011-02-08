@@ -4,5 +4,5 @@ require 'configloader'
 require 'spec'
 require 'spec/autorun'
 
-class Rails
-end
+ENV['RAILS_ENV'] = 'test'
+ENV['RAILS_ROOT'] = File.expand_path(File.join(File.dirname(__FILE__), "..", "spec", "root_dir"))

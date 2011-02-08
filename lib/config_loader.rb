@@ -47,7 +47,7 @@ module ConfigLoader
   #       server: <%= `hostname` %>
   #       port: 5984
   #       database_name: addressbook_test
-  def self.load(file_name, running_env = Rails.env, project_root = Rails.root.to_s)
+  def self.load(file_name, running_env = ENV['RAILS_ENV'], project_root = ENV['RAILS_ROOT'])
     ConfigLoader::Map.new(file_name, running_env, project_root).load
   end
 end
